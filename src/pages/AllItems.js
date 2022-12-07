@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -39,10 +38,6 @@ const AllItems = () => {
             </div>
         );
     }
-
-    // if (isLoaded && (items.length === 0 || items.filter((item, idx) => item.isCompleted === false))) {
-    //     return <NoItemsFound />;
-    // }
 
     return <>
         <div className="btn-div">
