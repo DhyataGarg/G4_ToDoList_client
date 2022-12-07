@@ -1,0 +1,52 @@
+.cards-container {
+  max-height: calc(100vh - 4.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  height: 250px;
+  width: 300px;
+  margin: 5px;
+  background-color: #9ec3cc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 4.65em);
+}
+
+.desc p {
+  margin: 1rem auto;
+  text-align: justify;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons button {
+  margin: 0px 3px;
+}
+
+.input {
+  height: 3.8em;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  text-align: center;
+}
+
+.textarea {
+  height: 100%;
+  background-color: transparent;
+  padding: 10px;
+  margin-bottom: 5px;
+  max-width: 100%;
+}

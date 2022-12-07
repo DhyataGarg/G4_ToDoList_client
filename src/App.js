@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
+
+import Layout from './components/layout/Layout'
+import LoadingSpinner from './components/UI/LoadingSpinner'
+import NotFound from './pages/NotFound'
+import AllItems from './pages/AllItems'
+import Form from "./components/items/Form";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Layout>
+        <Suspense
+          fallback={
+            <div className="centered">
+              <LoadingSpinner />
+            </div>
+          }
         >
-          Learn React
-        </a>
-      </header>
+          <Routes>
+            <Route path="/items" element={<AllItems />} />
+            <Route path="/new-item" element={<Form />} />
+            <Route path="/items/:itemId" element={<NotFound />}>
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
