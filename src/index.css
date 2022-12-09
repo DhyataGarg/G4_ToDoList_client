@@ -22,6 +22,11 @@ body {
   color: white;
 }
 
+.btn-div {
+  display: flex;
+  justify-content: space-around;
+}
+
 .btn {
   text-decoration: none;
   background-color: teal;

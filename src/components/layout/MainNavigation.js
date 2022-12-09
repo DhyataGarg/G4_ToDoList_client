@@ -8,13 +8,13 @@ const MainNavigation = () => {
       <nav className={classes.nav}>
         <ul>
           <li>
-            <NavLink to="/items" activeClassName={classes.active}>
+            <NavLink to="/items" className={(navData) => (navData.isActive ? classes.active : 'none')}>
               All Items
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/new-item" activeClassName={classes.active}>
+            <NavLink to="/new-item" className={(navData) => (navData.isActive ? classes.active : 'none')}>
               Add an item
             </NavLink>
           </li>

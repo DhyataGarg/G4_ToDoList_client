@@ -11,6 +11,7 @@ const AllItems = () => {
     const { itemId } = useParams();
     const [items, setItems] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [pending, setPending] = useState(true);
 
     const getItems = () => {
         var queryString = "?";
@@ -39,15 +40,29 @@ const AllItems = () => {
         );
     }
 
-    if (isLoaded && items.length === 0) {
-        return <NoItemsFound />;
-    }
+    // if (isLoaded && (items.length === 0 || items.filter((item, idx) => item.isCompleted === false))) {
+    //     return <NoItemsFound />;
+    // }
 
     return <>
+        <div className="btn-div">
+            <button className="btn" onClick={(e) => { e.preventDefault(); setPending(true) }}>
+                Pending
+            </button>
 
-        <div className={styles["cards-container"]}>
-            {items?.map((item, idx) => <Card key={idx} refreshList={getItems} id={item._id} title={item.title} description={item.description} isCompleted={item.isCompleted} />)}
+            {items.filter((item, idx) => item.isCompleted === true).length > 0 && <button className="btn" onClick={(e) => { e.preventDefault(); setPending(false) }}>
+                Completed
+            </button>}
         </div>
+        <hr />
+        <h2 className="centered">{pending ? "Pending" : "Completed"}</h2>
+
+        {(isLoaded && (items.length === 0 || items.filter((item, idx) => item.isCompleted === false).length === 0) && pending) ?
+            <NoItemsFound />
+            :
+            <div className={styles["cards-container"]}>
+                {(pending ? items.filter((item, idx) => item.isCompleted === false) : items.filter((item, idx) => item.isCompleted))?.map((item, idx) => <Card key={idx} refreshList={getItems} id={item._id} title={item.title} description={item.description} isCompleted={item.isCompleted} />)}
+            </div>}
     </>
 }
 
